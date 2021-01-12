@@ -1,25 +1,42 @@
-const Header = (title, date, temp) => {
-  // TASK 1
-  // ---------------------
-  // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
-  // The tags used, the hierarchy of elements and their attributes must match the provided markup exactly!
-  // The text inside elements will be set using their `textContent` property (NOT `innerText`).
-  //
-  //  <div class="header">
-  //    <span class="date">{ date }</span>
-  //    <h1>{ title }</h1>
-  //    <span class="temp">{ temp }</span>
-  //  </div>
-  //
+// STEP 1: Create a header component.
+// -----------------------
+// Write a function that returns the markup you see below:
+//
+//  <div class="header">
+//    <span class="date">MARCH 28, 2020</span>
+//    <h1>Lambda Times</h1>
+//    <span class="temp">98°</span>
+//  </div>
+//
+// Use your function to create a header
+// and append it to the DOM inside the div.header-container
+
+const header = () => {
+
+  //elements
+  const header = document.createElement('div')
+  const date = document.createElement('span')
+  const title = document.createElement('h1')
+  const temperature = document.createElement('span')
+
+  //structure
+  header.appendChild(date)
+  header.appendChild(title)
+  header.appendChild(temperature)
+
+  //classes
+  header.classList.add('header')
+  date.classList.add('date')
+  temperature.classList.add('temp')
+
+  //content
+  date.textContent = 'March 28, 2019'
+  title.textContent = 'Lambda Times'
+  temperature.textContent = '98°'
+
+  return header
+
 }
 
-const headerAppender = (selector) => {
-  // TASK 2
-  // ---------------------
-  // Implement this function taking a css selector as its only argument.
-  // It should create a header using the Header component above, passing arguments of your choosing.
-  // It should append the header to the element in the DOM that matches the given selector.
-  //
-}
-
-export { Header, headerAppender }
+const headerContainer = document.querySelector('.header-container')
+headerContainer.appendChild(header())
